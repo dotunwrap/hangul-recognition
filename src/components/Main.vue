@@ -47,6 +47,10 @@ export default {
         },
         randomQuestion() {
             const generatedQuestion = Object.keys(this.hangulJson)[Object.keys(this.hangulJson).length * Math.random() << 0];
+            if (generatedQuestion === this.currentQuestion) {
+                this.randomQuestion();
+                return;
+            }
             if (!generatedQuestion) return this.currentQuestion = this.lang !== "en" ? "" : "N/A";
             this.currentQuestion = generatedQuestion;
         },
