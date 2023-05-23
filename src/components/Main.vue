@@ -8,7 +8,7 @@
             <h3 id="currentQuestion">
                 {{ currentQuestion ? currentQuestion : randomQuestion() }}
             </h3>
-            <p :style="wrongAnswer ? '' : 'opacity: 0'">{{ hangulJson[currentQuestion] }}</p>
+            <p :style="wrongAnswer ? '' : 'opacity: 0; cursor: default'">{{ hangulJson[currentQuestion] }}</p>
         </div>
         <input id="answer" type="text" :placeholder="lang != 'en' ? '로마자를 입력하세요' : 'Please enter the romanization'" v-model="answer" />
     </div>
@@ -87,7 +87,8 @@ export default {
 #question {
     display: flex;
     flex-direction: column;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     & h3 {
         font-weight: 800;
         font-size: 6rem;
