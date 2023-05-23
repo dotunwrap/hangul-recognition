@@ -55,7 +55,7 @@ export default {
             this.currentQuestion = generatedQuestion;
         },
         verifyAnswer() {
-            this.answer = this.answer.toLowerCase();
+            this.answer = this.answer.toLowerCase().trim();
             if (!this.answer || !this.currentQuestion || this.answer !== this.hangulJson[this.currentQuestion]) return this.handleWrongAnswer();
             this.handleCorrectAnswer();
         },
