@@ -38,7 +38,7 @@ export default {
         }
       });
       window.addEventListener('click', (e) => {
-        if (!this.showOptions || e.target == document.getElementById('options-button') || e.target == document.getElementById('options') || document.getElementById('options')?.contains(e.target)) return;
+        if (!this.showOptions || e.target == document.getElementById('options-button') || e.target == document.getElementById('options') || (e.target instanceof Node && document.getElementById('options')?.contains(e.target))) return;
         this.showOptions = false;
       });
     },
