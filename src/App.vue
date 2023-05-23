@@ -81,6 +81,7 @@ header {
 #main {
   width: 75vw;
   height: 50vh;
+  min-height: 300px;
   background-color: var(--color-background-mute);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 2rem;
@@ -116,7 +117,8 @@ footer {
   transform: translate(-50%, -50%);
   background-color: var(--color-background-mute);
   width: 15vw;
-  min-width: 200px;
+  min-width: 300px;
+  min-height: 250px;
   height: 30vh;
   border-radius: 2rem;
 }
