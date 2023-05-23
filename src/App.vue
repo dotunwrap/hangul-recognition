@@ -16,7 +16,7 @@ import Options from './components/Options.vue';
   </header>
 
   <main>
-    <Main :lang="lang" :options="optionsJson" />
+    <Main :key="mainKey" :lang="lang" :options="optionsJson" />
   </main>
 
   <footer>
@@ -24,11 +24,12 @@ import Options from './components/Options.vue';
   </footer>
 
   <div class="modal" v-if="showOptions">
-    <Options :lang="lang" @changeOptions="optionsJson = $event" />
+    <Options :lang="lang" :options="optionsJson" @changeOptions="changeOptions" />
   </div>
 </template>
 
 <script lang="ts">
+import optionsJson from './config/options.json';
 export default {
     created() {
       window.addEventListener('keydown', (e) => {
@@ -37,7 +38,7 @@ export default {
         }
       });
       window.addEventListener('click', (e) => {
-        if (!this.showOptions || e.target == document.getElementById('options-button') || e.target == document.getElementById('options')) return;
+        if (!this.showOptions || e.target == document.getElementById('options-button') || e.target == document.getElementById('options') || document.getElementById('options')?.contains(e.target)) return;
         this.showOptions = false;
       });
     },
@@ -45,13 +46,17 @@ export default {
       return {
         lang: "en",
         showOptions: false,
-        optionsJson: {
-          "consonants": true,
-          "vowels": true
-        }
+        optionsJson: optionsJson,
+        mainKey: 0
       }
     },
-    components: { LanguageSwitcher, Main, Options }
+    components: { LanguageSwitcher, Main, Options },
+    methods: {
+      changeOptions(event: Object) {
+        Object.assign(this.optionsJson, event);
+        this.mainKey++;
+      }
+    }
 }
 </script>
 
@@ -78,6 +83,7 @@ header {
   height: 50vh;
   background-color: var(--color-background-mute);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 2rem;
 }
 
 #main:not(.wrong-answer) {
@@ -109,7 +115,9 @@ footer {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transform: translate(-50%, -50%);
   background-color: var(--color-background-mute);
-  width: 75vw;
-  height: 75vh;
+  width: 15vw;
+  min-width: 200px;
+  height: 30vh;
+  border-radius: 2rem;
 }
 </style>

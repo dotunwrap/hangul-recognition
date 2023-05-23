@@ -1,3 +1,6 @@
 {
-    
+    "consonants": true,
+    "vowels": true,
+    "double consonants": true,
+    "diphthongs": true
 }

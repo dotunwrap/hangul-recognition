@@ -4,7 +4,10 @@
 <template>
     <div id="main" :class="wrongAnswer ? 'wrong-answer' : ''">
         <div id="question">
-            <h3>{{ currentQuestion ? currentQuestion : randomQuestion() }}</h3>
+            
+            <h3 id="currentQuestion">
+                {{ currentQuestion ? currentQuestion : randomQuestion() }}
+            </h3>
             <p :style="wrongAnswer ? '' : 'opacity: 0'">{{ hangulJson[currentQuestion] }}</p>
         </div>
         <input id="answer" type="text" :placeholder="lang != 'en' ? '로마자를 입력하세요' : 'Please enter the romanization'" v-model="answer" />
@@ -26,6 +29,7 @@ export default {
             currentQuestion: "",
             answer: "",
             wrongAnswer: false,
+            leeches: []
         }
     },
     props: ['lang', 'options'],
@@ -42,7 +46,9 @@ export default {
             return resultJson;
         },
         randomQuestion() {
-            this.currentQuestion = Object.keys(this.hangulJson)[Object.keys(this.hangulJson).length * Math.random() << 0];
+            const generatedQuestion = Object.keys(this.hangulJson)[Object.keys(this.hangulJson).length * Math.random() << 0];
+            if (!generatedQuestion) return this.currentQuestion = this.lang !== "en" ? "" : "N/A";
+            this.currentQuestion = generatedQuestion;
         },
         verifyAnswer() {
             this.answer = this.answer.toLowerCase();
@@ -93,5 +99,7 @@ input {
     font-size: 1rem;
     color: var(--color-text);
     background-color: var(--color-border);
+    border-radius: 1rem;
+    padding: 0 1rem;
 }
 </style>
