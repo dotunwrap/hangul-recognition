@@ -8,7 +8,7 @@
             <h3 id="currentQuestion">
                 {{ currentQuestion ? currentQuestion : randomQuestion() }}
             </h3>
-            <p :style="wrongAnswer ? '' : 'opacity: 0'">{{ hangulJson[currentQuestion] }}</p>
+            <p :style="wrongAnswer ? '' : 'opacity: 0; cursor: default'">{{ options["names"] ? nameJson[currentQuestion].toString() : hangulJson[currentQuestion] }}</p>
         </div>
         <input id="answer" type="text" :placeholder="lang != 'en' ? '로마자를 입력하세요' : 'Please enter the romanization'" v-model="answer" />
     </div>
@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import hangulJson from '../config/hangul.json';
+import nameJson from '../config/names.json';
 export default {
     created() {
         document.addEventListener('keydown', (e) => {
@@ -26,10 +27,11 @@ export default {
     data() {
         return {
             hangulJson: this.buildHangulJson(hangulJson),
+            nameJson: nameJson,
             currentQuestion: "",
             answer: "",
             wrongAnswer: false,
-            leeches: []
+            leeches: {String, Number}
         }
     },
     props: ['lang', 'options'],
@@ -56,11 +58,16 @@ export default {
         },
         verifyAnswer() {
             this.answer = this.answer.toLowerCase().trim();
-            if (!this.answer || !this.currentQuestion || this.answer !== this.hangulJson[this.currentQuestion]) return this.handleWrongAnswer();
+            const isCorrect = this.options["names"] ? this.nameJson[this.currentQuestion]?.includes(this.answer) : this.hangulJson[this.currentQuestion] === this.answer;
+            if (!this.answer || !this.currentQuestion || !isCorrect) return this.handleWrongAnswer();
             this.handleCorrectAnswer();
         },
         handleWrongAnswer() {
+            if (this.wrongAnswer) return;
             this.wrongAnswer = true;
+            if (this.leeches[this.currentQuestion]) this.leeches[this.currentQuestion]++;
+            else this.leeches[this.currentQuestion] = 1;
+            console.log(this.leeches);
         },
         handleCorrectAnswer() {
             this.wrongAnswer = false;
@@ -87,7 +94,8 @@ export default {
 #question {
     display: flex;
     flex-direction: column;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     & h3 {
         font-weight: 800;
         font-size: 6rem;
