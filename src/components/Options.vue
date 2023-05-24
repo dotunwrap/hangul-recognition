@@ -41,8 +41,11 @@ export default {
 
             for (let option in this.options) {
                 if (!this.checkedOptions.includes(option)) resultObject[option] = false;
+                else if (this.checkedOptions.includes("names") && option !== "consonants" && option !== "double consonants" && option !== "names") resultObject[option] = false;
                 else resultObject[option] = true;
             }
+
+            console.log(resultObject);
 
             return resultObject;
         },

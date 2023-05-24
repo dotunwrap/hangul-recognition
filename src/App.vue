@@ -24,7 +24,7 @@ import Options from './components/Options.vue';
   </footer>
 
   <div class="modal" v-if="showOptions">
-    <Options :lang="lang" :options="optionsJson" @changeOptions="changeOptions" />
+    <Options :key="mainKey" :lang="lang" :options="optionsJson" @changeOptions="changeOptions" />
   </div>
 </template>
 
