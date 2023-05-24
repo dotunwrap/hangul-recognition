@@ -8,7 +8,7 @@
             <h3 id="currentQuestion">
                 {{ currentQuestion ? currentQuestion : randomQuestion() }}
             </h3>
-            <p :style="wrongAnswer ? '' : 'opacity: 0; cursor: default'">{{ options["names"] ? nameJson[currentQuestion].toString() : hangulJson[currentQuestion] }}</p>
+            <p :style="wrongAnswer ? '' : 'opacity: 0; cursor: default'">{{ options["names"] ? nameJson[currentQuestion as keyof typeof nameJson].toString() : hangulJson[currentQuestion] }}</p>
         </div>
         <input id="answer" type="text" :placeholder="lang != 'en' ? '로마자를 입력하세요' : 'Please enter the romanization'" v-model="answer" />
     </div>
@@ -31,7 +31,7 @@ export default {
             currentQuestion: "",
             answer: "",
             wrongAnswer: false,
-            leeches: {String, Number}
+            leeches: {}
         }
     },
     props: ['lang', 'options'],
@@ -58,21 +58,24 @@ export default {
         },
         verifyAnswer() {
             this.answer = this.answer.toLowerCase().trim();
-            const isCorrect = this.options["names"] ? this.nameJson[this.currentQuestion]?.includes(this.answer) : this.hangulJson[this.currentQuestion] === this.answer;
+            const isCorrect = this.options["names"] ? this.nameJson[this.currentQuestion as keyof typeof nameJson]?.includes(this.answer) : this.hangulJson[this.currentQuestion] === this.answer;
             if (!this.answer || !this.currentQuestion || !isCorrect) return this.handleWrongAnswer();
             this.handleCorrectAnswer();
         },
         handleWrongAnswer() {
             if (this.wrongAnswer) return;
             this.wrongAnswer = true;
-            if (this.leeches[this.currentQuestion]) this.leeches[this.currentQuestion]++;
-            else this.leeches[this.currentQuestion] = 1;
-            console.log(this.leeches);
+            this.setLeeches(this.leeches);
         },
         handleCorrectAnswer() {
             this.wrongAnswer = false;
             this.answer = "";
             this.randomQuestion();
+        },
+        setLeeches(leeches: {[key: string]: number}) {
+            if (this.leeches[this.currentQuestion as keyof typeof this.leeches]) return this.leeches[this.currentQuestion as keyof typeof this.leeches]++;
+            leeches[this.currentQuestion as keyof typeof this.leeches] = 1;
+            this.leeches = leeches;
         }
     }
 }
