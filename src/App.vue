@@ -119,7 +119,7 @@ footer {
   width: 15vw;
   min-width: 300px;
   min-height: 250px;
-  height: 30vh;
+  height: 40vh;
   border-radius: 2rem;
 }
 </style>
