@@ -8,7 +8,7 @@
             <h3 id="currentQuestion">
                 {{ currentQuestion ? currentQuestion : randomQuestion() }}
             </h3>
-            <p :style="wrongAnswer ? '' : 'opacity: 0; cursor: default'">{{ options["names"] ? nameJson[currentQuestion as keyof typeof nameJson].toString() : pronunciationJson[currentQuestion] }}</p>
+            <p :style="wrongAnswer ? '' : 'opacity: 0; cursor: default'">{{ options["names"] ? nameJson[currentQuestion as keyof typeof nameJson]?.toString() : pronunciationJson[currentQuestion] }}</p>
         </div>
         <input v-if="!options['names']" id="answer" type="text" :placeholder="lang != 'en' ? '로마자를 입력하세요' : 'Please enter the romanization'" v-model="answer" />
         <input v-else id="answer" type="text" :placeholder="lang != 'en' ? '로마자를 한글 이름을 입력하세요' : 'Please enter the name of the character'" v-model="answer" />
@@ -57,7 +57,7 @@ export default {
                 return;
             }
 
-            if (!generatedQuestion) return this.currentQuestion = this.lang !== "en" ? "" : "N/A";
+            if (!generatedQuestion) return this.currentQuestion = "N/A";
             this.currentQuestion = generatedQuestion;
         },
 
