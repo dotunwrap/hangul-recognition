@@ -3,5 +3,6 @@
     "vowels": true,
     "double consonants": true,
     "diphthongs": true,
-    "names": false
+    "names": false,
+    "auto submit": true
 }
