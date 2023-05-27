@@ -13,7 +13,8 @@
         "ㄱ": "g",
         "ㅋ": "k",
         "ㅎ": "h",
-        "ㅇ": "ng"
+        "ㅇ (as leading)": "-",
+        "ㅇ (as final)": "ng"
     },
     "double consonants": {
         "ㅃ": "bb",
