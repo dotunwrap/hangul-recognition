@@ -31,8 +31,8 @@ export default {
     },
     props: ['lang', 'options'],
     methods: {
-        buildJson(rawJson: any) {
-            let resultJson: Object = {};
+        buildJson(rawJson: {[key: string]: any}) {
+            let resultJson = {};
 
             for (let objectName in rawJson) {
                 if (!this.options[objectName]) continue;
@@ -51,44 +51,44 @@ export default {
                 return;
             }
 
-            if (!generatedQuestion) return this.currentQuestion = "N/A";
-            this.currentQuestion = generatedQuestion;
+            this.currentQuestion = generatedQuestion || "N/A";
         },
 
         handleInputChange() {
-            const answer = this.answer.toLowerCase().replace(" ", "");
+            const answer = this.answer.toLowerCase().replace(/\s/g, "");
             const position = answer.length - 1;
             if (position < 0) return;
-            const lastInput = answer.split("")[position];
+            const lastInput = answer[position];
             let matchingAnswer = "";
 
             if (this.options["names"]) {
                 for (let possibleAnswer of this.nameJson[this.currentQuestion as keyof typeof nameJson]) {
-                    if (possibleAnswer.replace(" ", "").split("")[position] !== lastInput) continue;
-                    matchingAnswer = possibleAnswer.replace(" ", "");
+                    possibleAnswer = possibleAnswer.replace(/\s/g, "");
+                    if (possibleAnswer[position] !== lastInput) continue;
+                    matchingAnswer = possibleAnswer;
                     break;
                 }
             }
 
             const doesMatch = this.options["names"]
-                ? matchingAnswer?.split("")[position] === lastInput
-                : this.pronunciationJson[this.currentQuestion].split("")[position] === lastInput;
+                ? matchingAnswer?.[position] === lastInput
+                : this.pronunciationJson[this.currentQuestion][position] === lastInput;
 
-            if (!doesMatch) this.handleWrongAnswer();
+            if (!doesMatch) return this.handleWrongAnswer();
 
             const isCompleted = matchingAnswer
                 ? matchingAnswer.length == position + 1
                 : this.pronunciationJson[this.currentQuestion].length == position + 1;
 
             if (!isCompleted) return;
-
+            
             this.verifyAnswer();
         },
 
         verifyAnswer() {
-            this.answer = this.answer.toLowerCase().replace(" ", "");
+            this.answer = this.answer.toLowerCase().replace(/\s/g, "");
             const isCorrect = this.options["names"] 
-                ? this.nameJson[this.currentQuestion as keyof typeof nameJson]?.map((value: string) => value.toLowerCase().replace(" ", "")).includes(this.answer) 
+                ? this.nameJson[this.currentQuestion as keyof typeof nameJson]?.map((value: string) => value.toLowerCase().replace(/\s/g, "") ?? []).includes(this.answer) 
                 : this.pronunciationJson[this.currentQuestion] === this.answer;
             if (!this.answer || !this.currentQuestion || !isCorrect) return this.handleWrongAnswer();
             this.handleCorrectAnswer();
