@@ -44,7 +44,7 @@ export default {
 
         randomQuestion() {
             const json = this.options["names"] ? this.nameJson : this.pronunciationJson;
-            const generatedQuestion = Object.keys(json)[Math.floor(Object.keys(json).length * Math.random())];
+            const generatedQuestion = Object.keys(json)[Object.keys(json).length * Math.random() << 0];
 
             if (generatedQuestion === this.currentQuestion) {
                 this.randomQuestion();
@@ -80,7 +80,9 @@ export default {
                 ? matchingAnswer.length == position + 1
                 : this.pronunciationJson[this.currentQuestion].length == position + 1;
 
-            if (isCompleted) this.verifyAnswer();
+            if (!isCompleted) return;
+            
+            this.verifyAnswer();
         },
 
         verifyAnswer() {
