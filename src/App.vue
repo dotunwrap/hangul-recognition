@@ -118,8 +118,8 @@ footer {
   background-color: var(--color-background-mute);
   width: 15vw;
   min-width: 300px;
-  min-height: 250px;
-  height: 40vh;
+  min-height: 350px;
+  height: 35vh;
   border-radius: 2rem;
 }
 </style>
