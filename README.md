@@ -1,40 +1,26 @@
-# Hangul
+# <p align="center">Hangul Recognition Test</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+[This website](https://dotunwrap.github.io/hangul-recognition) provides a simple recognition test for hangul (the Korean "alphabet") to help Korean students master the romanization and names of the characters. 
+## Usage
 
-## Recommended IDE Setup
+Opening the website will present you with a fairly simple user-interface. There are three buttons at the top right of the page:
+- 🇬🇧: Change the text on the site to English.
+- 🇰🇷: Change the text on the site to Korean.
+- ⚙️: Open the settings modal.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+The settings modal contains configuration opens for the test:
+- Consonants: Show consonant characters in the test.
+- Vowels: Show vowel characters in the test.
+- Double Consonants: Show double consonants in the test.
+- Diphthongs: Show diphthong characters in the test.
+- Names: Change the test to look for the name of the character rather than the romanization. (This disables vowels and diphthongs as they do not have names.)
+- Auto Submit: Toggle the functionality of auto-submitting your answer whenever an incorrect character is entered or the correct answer is provided. Turning off will wait for the user to click the enter key to submit.
 
-## Type Support for `.vue` Imports in TS
+## Contributing
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+The site is written in Vue.js and vanilla CSS. To run a dev environment on your local network, run:
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+Create all feature branches off of the `develop` branch and submit your PR to merge back into it. Once reviewed and accepted, it will remain in the develop branch until a maintainer runs a deploy from `develop` to `master`.
