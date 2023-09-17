@@ -7,7 +7,7 @@ import Options from './components/Options.vue';
 <template>
   <header>
     <div class="header-title">
-      <h1>{{ lang != "en" ? "한글" : "Hangul" }}</h1>
+      <h1>{{ lang != "en" ? "한글" : "Hangul" }}</h1>
     </div>
     <div class="header-buttons">
       <LanguageSwitcher @changeLanguage="lang = $event" />
@@ -20,7 +20,7 @@ import Options from './components/Options.vue';
   </main>
 
   <footer>
-    <h3>{{ lang != "en" ? "Gabby가 🩷로 만든 웹사이트" : "Made with 🩷 by Gabby" }}</h3>
+    <h3>{{ lang != "en" ? "Garrett가 🩷로 만든 웹사이트" : "Made with 🩷 by Garrett" }}</h3>
   </footer>
 
   <div class="modal" v-if="showOptions">
