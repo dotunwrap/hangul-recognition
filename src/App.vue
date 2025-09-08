@@ -20,7 +20,7 @@ import Options from './components/Options.vue';
   </main>
 
   <footer>
-    <h3>{{ lang != "en" ? "Garrett가 🩷로 만든 웹사이트" : "Made with 🩷 by Garrett" }}</h3>
+    <h3>{{ lang != "en" ? "Gabby가 🩷로 만든 웹사이트" : "Made with 🩷 by Gabby" }}</h3>
   </footer>
 
   <div class="modal" v-if="showOptions">
