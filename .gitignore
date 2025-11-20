@@ -37,3 +37,6 @@ __screenshots__/
 
 # direnv
 .direnv/
+
+# Claude Code
+.claude/settings.local.json
