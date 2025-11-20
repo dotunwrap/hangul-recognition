@@ -2,7 +2,7 @@ name: CD
 
 on:
   push:
-    branches: 
+    branches:
       - 'main'
     paths:
       - 'index.html'
@@ -40,7 +40,7 @@ jobs:
           fetch-depth: 1
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2 
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: ${{ env.BUN_VERSION }}
 

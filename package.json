@@ -16,8 +16,8 @@
     "lint:oxlint:check": "oxlint -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
     "lint:eslint:check": "eslint --cache",
-    "lint": "run-s lint:*",
-    "lint:check": "run-s lint:*:check",
+    "lint": "run-s lint:oxlint lint:eslint",
+    "lint:check": "run-s lint:oxlint:check lint:eslint:check",
     "fmt": "prettier . --write",
     "fmt:check": "prettier . --check"
   },
@@ -34,6 +34,7 @@
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-oxlint": "~1.23.0",
     "eslint-plugin-vue": "~10.5.0",
     "jiti": "^2.6.1",

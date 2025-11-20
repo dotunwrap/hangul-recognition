@@ -13,12 +13,14 @@ This project uses **Bun** as its package manager. Always use `bun` commands inst
 ## Common Commands
 
 ### Development
+
 ```bash
 bun install          # Install dependencies
 bun dev              # Start dev server with hot reload
 ```
 
 ### Building
+
 ```bash
 bun run build        # Type-check and build for production
 bun run build-only   # Build without type-checking
@@ -26,11 +28,13 @@ bun run preview      # Preview production build locally
 ```
 
 ### Type Checking
+
 ```bash
 bun run type-check   # Run vue-tsc to check types
 ```
 
 ### Linting and Formatting
+
 ```bash
 # Linting (uses both oxlint and eslint)
 bun run lint         # Run all linters with auto-fix
@@ -50,6 +54,7 @@ bun run fmt:check    # Check formatting without modifying
 ## Architecture
 
 ### Tech Stack
+
 - **Framework**: Vue 3 with Composition API
 - **Build Tool**: Vite (using rolldown-vite, an experimental Rust-based Vite variant)
 - **Language**: TypeScript
@@ -58,6 +63,7 @@ bun run fmt:check    # Check formatting without modifying
 - **Formatting**: oxfmt
 
 ### Project Structure
+
 ```
 src/
 ├── data/           # Static JSON data for Hangul characters
@@ -88,6 +94,7 @@ The application's Hangul character data is stored in three JSON files:
 ### TypeScript Configuration
 
 The project uses a project references setup with three tsconfig files:
+
 - `tsconfig.json`: Root config with project references
 - `tsconfig.app.json`: Application code config (extends `@vue/tsconfig/tsconfig.dom.json`)
 - `tsconfig.node.json`: Node/build config
@@ -97,6 +104,7 @@ Path alias `@/*` maps to `./src/*` for clean imports.
 ### Linting Strategy
 
 This project uses a dual-linting approach:
+
 1. **oxlint**: Fast Rust-based linter focused on correctness rules
 2. **ESLint**: Comprehensive Vue and TypeScript linting with `eslint-plugin-oxlint` to avoid rule conflicts
 
@@ -105,6 +113,7 @@ Both run sequentially via `npm-run-all2` when using `bun run lint`.
 ### Deployment
 
 The application deploys to GitHub Pages via the CD workflow (`.github/workflows/cd.yml`):
+
 - Triggers on pushes to `main` branch
 - Builds the app with `npm run build`
 - Deploys the `./dist` folder to GitHub Pages
@@ -113,18 +122,23 @@ The application deploys to GitHub Pages via the CD workflow (`.github/workflows/
 ## Development Notes
 
 ### Node Version Requirements
+
 - Requires Node.js `^20.19.0 || >=22.12.0` (defined in package.json engines)
 
 ### Vue DevTools
+
 - `vite-plugin-vue-devtools` is enabled for enhanced debugging during development
 - For best experience, install Vue.js devtools browser extension and enable Custom Object Formatters
 
 ### Router
+
 - Currently has no routes defined (`routes: []` in `src/router/index.ts`)
 - Uses `createWebHistory` for HTML5 history mode
 
 ### Adding New Hangul Character Data
+
 When adding or modifying Hangul character data, ensure consistency across all three data files:
+
 - Add/update the character in `pronunciation.json` with its romanization
 - Add/update the character in `names.json` with both romanized and Korean names
 - Update category flags in `options.json` if adding a new category
