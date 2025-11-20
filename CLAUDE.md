@@ -46,7 +46,7 @@ bun run lint:oxlint:check  # Run oxlint check only
 bun run lint:eslint        # Run eslint with auto-fix
 bun run lint:eslint:check  # Run eslint check only
 
-# Formatting (uses oxfmt)
+# Formatting (uses prettier)
 bun run fmt          # Format code
 bun run fmt:check    # Check formatting without modifying
 ```
@@ -59,8 +59,9 @@ bun run fmt:check    # Check formatting without modifying
 - **Build Tool**: Vite (using rolldown-vite, an experimental Rust-based Vite variant)
 - **Language**: TypeScript
 - **Router**: Vue Router 4
+- **Styling**: TailwindCSS 4.x with Vite plugin
 - **Linting**: Dual linting with oxlint (fast, correctness-focused) + ESLint (comprehensive)
-- **Formatting**: oxfmt
+- **Formatting**: Prettier with Tailwind plugin
 
 ### Project Structure
 
@@ -115,9 +116,9 @@ Both run sequentially via `npm-run-all2` when using `bun run lint`.
 The application deploys to GitHub Pages via the CD workflow (`.github/workflows/cd.yml`):
 
 - Triggers on pushes to `main` branch
-- Builds the app with `npm run build`
+- Builds the app with Bun (`bun run build`)
 - Deploys the `./dist` folder to GitHub Pages
-- Uses `npm` (not bun) in CI for compatibility
+- Uses Bun in CI (not npm)
 
 ## Development Notes
 
