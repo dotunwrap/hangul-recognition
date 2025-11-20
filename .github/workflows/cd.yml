@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - 'index.html'
+      - 'index.css'
       - 'bun.lock'
       - 'tsconfig.json'
       - 'tsconfig.node.json'
