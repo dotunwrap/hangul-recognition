@@ -17,15 +17,18 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
 
-      imports = [
-        ./flake/devshell.nix
-        ./flake/checks.nix
-      ];
-
       perSystem =
         { pkgs, ... }:
         {
           formatter = pkgs.nixfmt-tree;
+          devShells.default = pkgs.mkShell {
+            packages = builtins.attrValues {
+              inherit (pkgs)
+                bun
+                husky
+                ;
+            };
+          };
         };
     };
 }
