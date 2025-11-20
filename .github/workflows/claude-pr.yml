@@ -43,7 +43,7 @@ jobs:
             Perform a comprehensive code review with the following focus areas:
 
             1. **Context**
-               - Check the AGENTS.md file to get context on repository practices
+               - Check the CLAUDE.md file to get context on repository practices
 
             2. **Code Quality**
                - Clean code principles and best practices
