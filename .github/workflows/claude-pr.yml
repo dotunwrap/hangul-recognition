@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   claude_code_review:
+    name: Review PR
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     permissions:
