@@ -14,7 +14,7 @@
           ${pkgs.bun}/bin/bun run fmt:check ${self} < /dev/null | tee $out
         '';
         lint = pkgs.runCommand "check-lint-${self.rev or "dirty"}" { } ''
-          ${pkgs.bun}/bin/bun run lint ${self} < /dev/null | tee $out
+          ${pkgs.bun}/bin/bun run lint:check ${self} < /dev/null | tee $out
         '';
       };
     };
