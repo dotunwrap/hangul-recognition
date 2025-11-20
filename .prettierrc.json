@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "$schema": "https://www.schemastore.org/prettierrc.json",
   "useTabs": false,
   "tabWidth": 2,
   "printWidth": 100,
@@ -10,5 +10,9 @@
   "bracketSpacing": true,
   "bracketSameLine": false,
   "singleAttributePerLine": true,
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "vueIndentScriptAndStyle": true,
+  "htmlWhitespaceSensitivity": "css",
+  "embeddedLanguageFormatting": "auto",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
