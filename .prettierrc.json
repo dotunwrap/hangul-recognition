@@ -1,0 +1,14 @@
+{
+  "$schema": "https://www.schemastore.org/prettierrc.json",
+  "useTabs": false,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "singleQuote": true,
+  "semi": false,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "vueIndentScriptAndStyle": true,
+  "htmlWhitespaceSensitivity": "css",
+  "embeddedLanguageFormatting": "auto",
+  "plugins": ["prettier-plugin-tailwindcss"]
+}

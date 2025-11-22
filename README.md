@@ -1,26 +1,42 @@
-# <p align="center">Hangul Recognition Test</p>
+# hangul-recognition
 
-[This website](https://dotunwrap.github.io/hangul-recognition) provides a simple recognition test for hangul (the Korean "alphabet") to help Korean students master the romanization and names of the characters. 
-## Usage
+This template should help get you started developing with Vue 3 in Vite.
 
-Opening the website will present you with a fairly simple user-interface. There are three buttons at the top right of the page:
-- 🇬🇧: Change the text on the site to English.
-- 🇰🇷: Change the text on the site to Korean.
-- ⚙️: Open the settings modal.
+## Recommended IDE Setup
 
-The settings modal contains configuration opens for the test:
-- Consonants: Show consonant characters in the test.
-- Vowels: Show vowel characters in the test.
-- Double Consonants: Show double consonants in the test.
-- Diphthongs: Show diphthong characters in the test.
-- Names: Change the test to look for the name of the character rather than the romanization. (This disables vowels and diphthongs as they do not have names.)
-- Auto Submit: Toggle the functionality of auto-submitting your answer whenever an incorrect character is entered or the correct answer is provided. Turning off will wait for the user to click the enter key to submit.
+[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Contributing
+## Recommended Browser Setup
 
-The site is written in Vue.js and vanilla CSS. To run a dev environment on your local network, run:
+- Chromium-based browsers (Chrome, Edge, Brave, etc.):
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
+- Firefox:
+  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vite.dev/config/).
+
+## Project Setup
+
+```sh
+bun install
 ```
-npm run dev
+
+### Compile and Hot-Reload for Development
+
+```sh
+bun dev
 ```
 
-Create all feature branches off of the `develop` branch and submit your PR to merge back into it. Once reviewed and accepted, it will remain in the develop branch until a maintainer runs a deploy from `develop` to `master`.
+### Type-Check, Compile and Minify for Production
+
+```sh
+bun run build
+```
